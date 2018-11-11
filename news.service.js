@@ -36,9 +36,9 @@ export class NewsService {
         return url;
     }
 
-    checkForError(result) {
-        if (result.status === 'error') {
-            throw new Error(result.message);
+    checkForError({ status, message }) {
+        if (status === 'error') {
+            throw new Error(message || 'Unexpected error');
         }
     }
 }

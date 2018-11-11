@@ -1,7 +1,9 @@
+import config from './config.js';
 import { NewsService } from './news.service.js';
 
 export class NewsComponent {
     constructor() {
+        this.newsService = new NewsService(config.apiKey);
     }
 
     get selectedSourceId() {
@@ -21,10 +23,6 @@ export class NewsComponent {
     }
 
     init() {
-        const apiKey = prompt('Enter your API key');
-
-        this.newsService = new NewsService(apiKey);
-
         this.initElements();
         this.registerEventListeners();
 
@@ -104,20 +102,20 @@ export class NewsComponent {
     }
 
     lockForm() {
-        this.enableLoadNewsBtn(false);
-        this.enableLoadNextPageBtn(false);
+        this.toggleLoadNewsBtn(false);
+        this.toggleLoadNextPageBtn(false);
     }
 
     unlockForm() {
-        this.enableLoadNewsBtn(true);
-        this.enableLoadNextPageBtn(true);
+        this.toggleLoadNewsBtn(true);
+        this.toggleLoadNextPageBtn(true);
     }
 
-    enableLoadNewsBtn(value) {
+    toggleLoadNewsBtn(value) {
         this.loadNewsBtnEl.disabled = !value;
     }
 
-    enableLoadNextPageBtn(value) {
+    toggleLoadNextPageBtn(value) {
         this.loadNextPageBtnEl.disabled = !value;
     }
 }
