@@ -1,16 +1,4 @@
-(function (global, factory) {
-  if (typeof define === "function" && define.amd) {
-    define(["exports"], factory);
-  } else if (typeof exports !== "undefined") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.config = mod.exports;
-  }
-})(this, function (_exports) {
+define(["exports"], function (_exports) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -22,19 +10,7 @@
   };
   _exports.default = _default;
 });
-(function (global, factory) {
-  if (typeof define === "function" && define.amd) {
-    define(["./news.component.js"], factory);
-  } else if (typeof exports !== "undefined") {
-    factory(require("./news.component.js"));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(global.newsComponent);
-    global.index = mod.exports;
-  }
-})(this, function (_newsComponent) {
+define(["./news.component.js"], function (_newsComponent) {
   "use strict";
 
   window.addEventListener("load", function (event) {
@@ -42,19 +18,7 @@
     newsComponent.init();
   });
 });
-(function (global, factory) {
-  if (typeof define === "function" && define.amd) {
-    define(["exports", "./config.js", "./news.service.js"], factory);
-  } else if (typeof exports !== "undefined") {
-    factory(exports, require("./config.js"), require("./news.service.js"));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports, global.config, global.newsService);
-    global.newsComponent = mod.exports;
-  }
-})(this, function (_exports, _config, _newsService) {
+define(["exports", "./config.js", "./news.service.js"], function (_exports, _config, _newsService) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -259,19 +223,7 @@
 
   _exports.NewsComponent = NewsComponent;
 });
-(function (global, factory) {
-  if (typeof define === "function" && define.amd) {
-    define(["exports"], factory);
-  } else if (typeof exports !== "undefined") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.newsService = mod.exports;
-  }
-})(this, function (_exports) {
+define(["exports"], function (_exports) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
