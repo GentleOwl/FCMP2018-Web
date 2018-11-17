@@ -50,14 +50,16 @@ export class NewsComponent {
         });
     }
 
-    loadSources() {
-        this.lockForm();
-        this.newsService.getSourcesProm()
-            .then(sources => {
-                this.updateSources(sources);
-                this.unlockForm();
-            })
-            .catch(e => alert(`${e}\nTry to reload page.`));
+    async loadSources() {
+        try {
+            this.lockForm();
+            const sources = await this.newsService.getSourcesProm();
+
+            this.updateSources(sources);
+            this.unlockForm();
+        } catch(e) {
+            alert(`${e}\nTry to reload page.`);
+        }
     }
 
     updateSources(sources) {
@@ -71,12 +73,16 @@ export class NewsComponent {
         }
     }
 
-    loadNews(selectedSourceId, pageSize, page) {
-        this.lockForm();
-        return this.newsService.getNewsProm(selectedSourceId, pageSize, page)
-            .then(news => this.updateNews(news))
-            .catch(e => alert(`${e}\nTry again.`))
-            .finally(() => this.unlockForm());
+    async loadNews(selectedSourceId, pageSize, page) {
+        try {
+            this.lockForm();
+            const news = await this.newsService.getNewsProm(selectedSourceId, pageSize, page);
+            this.updateNews(news);
+        } catch (e) {
+            alert(`${e}\nTry again.`);
+        } finally {
+            this.unlockForm();
+        }
     }
 
     loadNextNews(selectedSourceId, pageSize, page) {

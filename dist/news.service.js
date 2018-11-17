@@ -1,22 +1,26 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports"], factory);
+    define(["exports", "core-js/modules/es6.promise", "regenerator-runtime/runtime"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports);
+    factory(exports, require("core-js/modules/es6.promise"), require("regenerator-runtime/runtime"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports);
+    factory(mod.exports, global.es6, global.runtime);
     global.newsService = mod.exports;
   }
-})(this, function (_exports) {
+})(this, function (_exports, _es, _runtime) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.NewsService = void 0;
+
+  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+  function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -36,35 +40,81 @@
 
     _createClass(NewsService, [{
       key: "getSourcesProm",
-      value: function getSourcesProm() {
-        var _this = this;
+      value: function () {
+        var _getSourcesProm = _asyncToGenerator(
+        /*#__PURE__*/
+        regeneratorRuntime.mark(function _callee() {
+          var sourceUrl, response, result;
+          return regeneratorRuntime.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  sourceUrl = this.getUrl('sources');
+                  _context.next = 3;
+                  return fetch(sourceUrl);
 
-        var sourceUrl = this.getUrl('sources');
-        return fetch(sourceUrl).then(function (request) {
-          return request.json();
-        }).then(function (result) {
-          _this.checkForError(result);
+                case 3:
+                  response = _context.sent;
+                  _context.next = 6;
+                  return response.json();
 
-          return result.sources;
-        });
-      }
+                case 6:
+                  result = _context.sent;
+                  this.checkForError(result);
+                  return _context.abrupt("return", result.sources);
+
+                case 9:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee, this);
+        }));
+
+        return function getSourcesProm() {
+          return _getSourcesProm.apply(this, arguments);
+        };
+      }()
     }, {
       key: "getNewsProm",
-      value: function getNewsProm(sourceId, pageSize, page) {
-        var _this2 = this;
+      value: function () {
+        var _getNewsProm = _asyncToGenerator(
+        /*#__PURE__*/
+        regeneratorRuntime.mark(function _callee2(sourceId, pageSize, page) {
+          var newsUrl, response, result;
+          return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  newsUrl = this.getUrl('everything');
+                  newsUrl.searchParams.set('sources', sourceId);
+                  newsUrl.searchParams.set('pageSize', pageSize);
+                  newsUrl.searchParams.set('page', page);
+                  _context2.next = 6;
+                  return fetch(newsUrl);
 
-        var newsUrl = this.getUrl('everything');
-        newsUrl.searchParams.set('sources', sourceId);
-        newsUrl.searchParams.set('pageSize', pageSize);
-        newsUrl.searchParams.set('page', page);
-        return fetch(newsUrl).then(function (request) {
-          return request.json();
-        }).then(function (result) {
-          _this2.checkForError(result);
+                case 6:
+                  response = _context2.sent;
+                  _context2.next = 9;
+                  return response.json();
 
-          return result.articles;
-        });
-      }
+                case 9:
+                  result = _context2.sent;
+                  this.checkForError(result);
+                  return _context2.abrupt("return", result.articles);
+
+                case 12:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2, this);
+        }));
+
+        return function getNewsProm(_x, _x2, _x3) {
+          return _getNewsProm.apply(this, arguments);
+        };
+      }()
     }, {
       key: "getUrl",
       value: function getUrl(section) {
