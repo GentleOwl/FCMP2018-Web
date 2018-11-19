@@ -4,30 +4,30 @@ export class NewsService {
         this.apiKey = apiKey;
     }
 
-    getSourcesProm() {
+    async getSourcesProm() {
         const sourceUrl = this.getUrl('sources');
 
-        return fetch(sourceUrl)
-            .then(request => request.json())
-            .then(result => {
-                this.checkForError(result);
-                return result.sources;
-            });
+        const response = await fetch(sourceUrl);
+        const result = await response.json();
+
+        this.checkForError(result);
+        
+        return result.sources;
     }
 
-    getNewsProm(sourceId, pageSize, page) {
+    async getNewsProm(sourceId, pageSize, page) {
         const newsUrl = this.getUrl('everything');
 
         newsUrl.searchParams.set('sources', sourceId);
         newsUrl.searchParams.set('pageSize', pageSize);
         newsUrl.searchParams.set('page', page);
 
-        return fetch(newsUrl)
-            .then(request => request.json())
-            .then(result => {
-                this.checkForError(result);
-                return result.articles;
-            });
+        const response = await fetch(newsUrl);
+        const result = await response.json();
+
+        this.checkForError(result);
+        
+        return result.articles;
     }
 
     getUrl(section) {
