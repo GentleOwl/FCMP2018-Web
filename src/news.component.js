@@ -1,5 +1,5 @@
-import config from './config.js';
-import { NewsService } from './news.service.js';
+import config from './config';
+import { NewsService } from './news.service';
 
 export class NewsComponent {
     constructor() {
