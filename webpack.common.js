@@ -7,10 +7,6 @@ module.exports = {
   entry: {
     app: path.resolve(__dirname, 'src/index.js')
   },
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: path.resolve(__dirname, 'dist')
-  },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist')
@@ -28,15 +24,33 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.json', '.css', '.scss'],
+    extensions: ['.js', '.json'],
+  },
+  resolveLoader: {
+    modules: [
+      'node_modules',
+      path.resolve(__dirname, 'src/loaders')]
   },
   module: {
     rules: [{
+      test: /\.html$/,
+      use: [{
+        loader: 'html-loader'
+      }],
+    }, {
+      test: /\.json$/,
+      use: [{
+        loader: 'custom-loader'
+      }],
+    }, {
       test: /\.m?js$/,
       exclude: /(node_modules|bower_components)/,
       use: {
         loader: 'babel-loader',
         options: {
+          plugins: [
+            '@babel/plugin-syntax-dynamic-import'
+          ],
           presets: [
             [
               '@babel/preset-env',
