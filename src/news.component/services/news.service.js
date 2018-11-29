@@ -4,7 +4,7 @@ export class NewsService {
         this.apiKey = apiKey;
     }
 
-    async getSourcesProm() {
+    async getSourcesAsync() {
         const sourceUrl = this.getUrl('sources');
 
         const response = await fetch(sourceUrl);
@@ -15,7 +15,7 @@ export class NewsService {
         return result.sources;
     }
 
-    async getNewsProm(sourceId, pageSize, page) {
+    async getNewsAsync(sourceId, pageSize, page) {
         const newsUrl = this.getUrl('everything');
 
         newsUrl.searchParams.set('sources', sourceId);

@@ -1,5 +1,5 @@
-import config from './config.js';
-import { NewsService } from './news.service.js';
+import config from './../config.json';
+import { NewsService } from './services/news.service';
 
 export class NewsComponent {
     constructor() {
@@ -26,7 +26,7 @@ export class NewsComponent {
         this.initElements();
         this.registerEventListeners();
 
-        this.loadSources();
+        this.loadSourcesAsync();
     }
 
     initElements() {
@@ -42,7 +42,7 @@ export class NewsComponent {
     registerEventListeners() {
         this.newsFormEl.addEventListener('submit', e => {
             e.preventDefault();
-            this.loadNews(this.selectedSourceId, this.pageSize, this.page);
+            this.loadNewsAsync(this.selectedSourceId, this.pageSize, this.page);
         });
 
         this.loadNextPageBtnEl.addEventListener('click', e => {
@@ -50,10 +50,10 @@ export class NewsComponent {
         });
     }
 
-    async loadSources() {
+    async loadSourcesAsync() {
         try {
             this.lockForm();
-            const sources = await this.newsService.getSourcesProm();
+            const sources = await this.newsService.getSourcesAsync();
 
             this.updateSources(sources);
             this.unlockForm();
@@ -73,10 +73,10 @@ export class NewsComponent {
         }
     }
 
-    async loadNews(selectedSourceId, pageSize, page) {
+    async loadNewsAsync(selectedSourceId, pageSize, page) {
         try {
             this.lockForm();
-            const news = await this.newsService.getNewsProm(selectedSourceId, pageSize, page);
+            const news = await this.newsService.getNewsAsync(selectedSourceId, pageSize, page);
             this.updateNews(news);
         } catch (e) {
             alert(`${e}\nTry again.`);
@@ -87,7 +87,7 @@ export class NewsComponent {
 
     loadNextNews(selectedSourceId, pageSize, page) {
         const nextPage = page + 1;
-        this.loadNews(selectedSourceId, pageSize, nextPage)
+        this.loadNewsAsync(selectedSourceId, pageSize, nextPage)
             .then(() => {
                 this.page = nextPage;
                 window.scrollTo(0, 0);
