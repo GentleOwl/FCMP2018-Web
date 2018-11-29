@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+  - '10'
+dist: trusty
+sudo: required
+
+branches:
+  only:
+    - master
+
+install:
+  - npm install
+  - npm run build
+
+cache:
+  directories:
+    - ./node_modules
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: ./dist/
+  on:
+    branch: master
