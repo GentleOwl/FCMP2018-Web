@@ -25,11 +25,9 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.js', '.json'],
-  },
-  resolveLoader: {
-    modules: [
-      'node_modules',
-      path.resolve(__dirname, 'src/loaders')]
+    alias: {
+      ["error-handling"]: path.resolve(__dirname, 'src/error-handling'),
+    }
   },
   module: {
     rules: [{
