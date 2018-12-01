@@ -1,13 +1,19 @@
+import { HttpClientService } from 'core-services/http-client.service';
+
 export class NewsService {
     constructor(apiKey) {
         this.baseUrl = new URL('https://newsapi.org/v2/');
         this.apiKey = apiKey;
+        this.httpClientService = new HttpClientService();
     }
 
     async getSourcesAsync() {
-        const sourceUrl = this.getUrl('sources');
+        const sourceUrl = new URL('sources', this.baseUrl);
+        const params = {
+            apiKey: this.apiKey
+        };
 
-        const response = await fetch(sourceUrl);
+        const response = await this.httpClientService.getAsync(sourceUrl, params);
         const result = await response.json();
 
         this.checkForError(result);
@@ -16,13 +22,15 @@ export class NewsService {
     }
 
     async getNewsAsync(sourceId, pageSize, page) {
-        const newsUrl = this.getUrl('everything');
+        const newsUrl = new URL('everything', this.baseUrl);
+        const params = {
+            apiKey: this.apiKey,
+            sources: sourceId,
+            pageSize: pageSize,
+            page: page
+        };
 
-        newsUrl.searchParams.set('sources', sourceId);
-        newsUrl.searchParams.set('pageSize', pageSize);
-        newsUrl.searchParams.set('page', page);
-
-        const response = await fetch(newsUrl);
+        const response = await this.httpClientService.getAsync(newsUrl, params);
         const result = await response.json();
 
         this.checkForError(result);
@@ -30,15 +38,9 @@ export class NewsService {
         return result.articles;
     }
 
-    getUrl(section) {
-        const url = new URL(section, this.baseUrl);
-        url.searchParams.set('apiKey', this.apiKey);
-        return url;
-    }
-
-    checkForError({ status, message }) {
-        if (status === 'error') {
-            throw new Error(message || 'Unexpected error');
+    checkForError(error) {
+        if (error.status === 'error') {
+            throw error;
         }
     }
 }

@@ -27,6 +27,8 @@ module.exports = {
     extensions: ['.js', '.json'],
     alias: {
       ["error-handling"]: path.resolve(__dirname, 'src/error-handling'),
+      ["core-decorators"]: path.resolve(__dirname, 'src/decorators'),
+      ["core-services"]: path.resolve(__dirname, 'src/services'),
     }
   },
   module: {
