@@ -38,11 +38,6 @@ module.exports = {
         loader: 'html-loader'
       }],
     }, {
-      test: /\.json$/,
-      use: [{
-        loader: 'custom-loader'
-      }],
-    }, {
       test: /\.m?js$/,
       exclude: /(node_modules|bower_components)/,
       use: {
