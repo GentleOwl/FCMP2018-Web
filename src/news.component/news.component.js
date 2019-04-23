@@ -1,5 +1,6 @@
 import config from './../config.json';
 import { NewsService } from './services/news.service';
+import { ErrorPopupService } from 'error-handling/error-popup.component/services/error-popup.service.js';
 
 export class NewsComponent {
     constructor() {
@@ -58,7 +59,7 @@ export class NewsComponent {
             this.updateSources(sources);
             this.unlockForm();
         } catch(e) {
-            alert(`${e}\nTry to reload page.`);
+            ErrorPopupService.showError(e);
         }
     }
 
@@ -79,7 +80,7 @@ export class NewsComponent {
             const news = await this.newsService.getNewsAsync(selectedSourceId, pageSize, page);
             this.updateNews(news);
         } catch (e) {
-            alert(`${e}\nTry again.`);
+            ErrorPopupService.showError(e);
         } finally {
             this.unlockForm();
         }

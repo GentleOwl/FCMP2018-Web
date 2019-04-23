@@ -25,11 +25,11 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.js', '.json'],
-  },
-  resolveLoader: {
-    modules: [
-      'node_modules',
-      path.resolve(__dirname, 'src/loaders')]
+    alias: {
+      ["error-handling"]: path.resolve(__dirname, 'src/error-handling'),
+      ["core-decorators"]: path.resolve(__dirname, 'src/decorators'),
+      ["core-services"]: path.resolve(__dirname, 'src/services'),
+    }
   },
   module: {
     rules: [{
@@ -38,18 +38,15 @@ module.exports = {
         loader: 'html-loader'
       }],
     }, {
-      test: /\.json$/,
-      use: [{
-        loader: 'custom-loader'
-      }],
-    }, {
       test: /\.m?js$/,
       exclude: /(node_modules|bower_components)/,
       use: {
         loader: 'babel-loader',
         options: {
           plugins: [
-            '@babel/plugin-syntax-dynamic-import'
+            '@babel/plugin-syntax-dynamic-import',
+            ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
+            '@babel/plugin-proposal-class-properties'
           ],
           presets: [
             [
