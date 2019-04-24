@@ -76,6 +76,7 @@
     "no-parameter-reassignment": false,
     "no-reserved-keywords": false,
     "max-classes-per-file": false,
-    "no-any": false
+    "no-any": false,
+    "no-null-keyword": false
   }
 }
