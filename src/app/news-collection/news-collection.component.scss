@@ -2,22 +2,23 @@
 @import '~bootstrap/scss/variables';
 
 .news {
-    &__source {
-        background: $gray-800;
-        padding: 15px;
-        text-align: center;
-        font-size: 24px;
-        color: white;
-        font-weight: bold;
-    }
+  &__source {
+    background: $gray-800;
+    padding: 15px;
+    text-align: center;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+  }
 }
 
 .toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid $gray-800;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: white;
+  box-shadow: 0 3px 3px $gray-400;
 }
 
 .news-collection {

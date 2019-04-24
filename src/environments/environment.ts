@@ -2,8 +2,11 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// tslint:disable-next-line:typedef
 export const environment = {
-  production: false
+  production: false,
+  apiKey: "05262e686cf847ba8e38d00b2db13e68",
+  webApiUrl: 'http://localhost:3000'
 };
 
 /*

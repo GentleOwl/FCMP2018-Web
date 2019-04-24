@@ -2,24 +2,32 @@
 @import '~bootstrap/scss/variables';
 
 :host {
-    width: 100%;
-    display: flex;
-    padding: 10px;
-    border-radius: 3px;
-    border: 1px solid $gray-800
+  width: 100%;
+  display: flex;
+  padding: 15px;
+  border-radius: 3px;
+  background: white;
 }
 
 .item {
-    &__info {
-        flex-grow: 1;
-    }
+  &__info {
+    flex-grow: 1;
+  }
 
-    &__actions {
-        display: flex;
-        flex-flow: column;
-    }
+  &__title {
 
-    &__action {
-        margin: 5px;
-    }
+  }
+
+  &__description {
+
+  }
+
+  &__actions {
+    display: flex;
+    flex-flow: column;
+  }
+
+  &__action {
+    margin: 5px;
+  }
 }

@@ -4,19 +4,18 @@
   </div>
   <div class="news__toolbar toolbar">
     <div class="toolbar__source">
-      <select class="form-control">
+      <select class="form-control" [(ngModel)]="selectedSource" (change)="onSourceChange()">
         <option disabled class="d-none">Select Source</option>
-        <option >Source 1</option>
-        <option >Source 2</option>
+        <option *ngFor="let source of sources" [ngValue]="source">{{ source.name }}</option>
       </select>
     </div>
     <div class="toolbar__filter">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Type here...">
+      <form class="input-group" (submit)="onSearch(searchTextInput.value)">
+        <input type="text" class="form-control" placeholder="Type here..." #searchTextInput>
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">Filter</button>
+          <button class="btn btn-outline-secondary" type="submit">Filter</button>
         </div>
-      </div>
+      </form>
     </div>
     <div class="toolbar__own-news-filter">
       <div class="form-check">
@@ -25,11 +24,16 @@
       </div>
     </div>
     <div class="toolbar__add-news">
-      <button class="btn btn-primary">Add Article</button>
+      <button class="btn btn-secondary" routerLink="/news/add">Add Article</button>
     </div>
   </div>
   <div class="news__collection news-collection">
-      <app-news-item class="news-collection__item" *ngFor="let item of [1, 2, 3, 4, 5]"></app-news-item>
-      <button class="btn btn-primary">Load More</button>
+      <app-news-item class="news-collection__item"
+                     *ngFor="let newsItem of newsItems | newsFilter:searchText"
+                     [newsItem]="newsItem"
+                     (delete)="onDeleteClick($event)"
+                     (edit)="onEditClick($event)"
+      ></app-news-item>
+      <button class="btn btn-secondary" (click)="onLoadMoreClick()" [disabled]="!selectedSource">Load More</button>
   </div>
 </div>

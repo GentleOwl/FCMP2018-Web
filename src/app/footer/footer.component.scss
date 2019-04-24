@@ -2,9 +2,10 @@
 @import '~bootstrap/scss/variables';
 
 .app-footer {
-    height: 75px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: $gray-300;
-  }
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $gray-800;
+  color: white;
+}
