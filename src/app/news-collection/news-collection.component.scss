@@ -1,0 +1,32 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+.news {
+    &__source {
+        background: $gray-800;
+        padding: 15px;
+        text-align: center;
+        font-size: 24px;
+        color: white;
+        font-weight: bold;
+    }
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid $gray-800;
+}
+
+.news-collection {
+    display: flex;
+    flex-flow: column;
+    width: 70%;
+    margin: 30px auto;
+
+    &__item {
+        margin-bottom: 20px;
+    }
+}
