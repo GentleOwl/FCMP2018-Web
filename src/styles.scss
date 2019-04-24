@@ -1,0 +1,14 @@
+@import '~bootstrap/scss/bootstrap';
+
+body,
+html,
+app-root {
+  height: 100%;
+  min-width: 480px;
+
+  background-color: #f5f5f5;
+}
+
+app-root {
+  display: block;
+}

@@ -1,0 +1,19 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title {
+    font-size: 36px;
+    font-weight: bold;
+    padding: 15px;
+    color: $gray-800;
+  }
+
+  &__user {
+    padding: 15px;
+  }
+}

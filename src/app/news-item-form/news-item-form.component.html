@@ -1,0 +1,11 @@
+<form (submit)="onSubmitClick()">
+  <div class="form-group">
+    <label for="news-title">Title</label>
+    <input name="title" type="text" class="form-control" id="news-title" [(ngModel)]="newsItem.title">
+  </div>
+  <div class="form-group">
+    <label for="news-description">Description</label>
+    <input name="description" type="text" class="form-control" id="news-description" [(ngModel)]="newsItem.description">
+  </div>
+  <button class="btn btn-secondary">Save</button>
+</form>

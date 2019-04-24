@@ -1,0 +1,8 @@
+<div class="app-header">
+  <div class="app-header__title">front camp 2018</div>
+  <div class="app-header__user">
+    <span *ngIf="user">{{ user.email }}</span>
+    <button *ngIf="!isAuthenticated" class="btn btn-secondary" routerLink="/user/login">Log In</button>
+    <button *ngIf="isAuthenticated" class="btn btn-secondary" (click)="onLogoutClick()">Log Out</button>
+  </div>
+</div>

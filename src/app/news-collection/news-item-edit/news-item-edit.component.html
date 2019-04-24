@@ -1,0 +1,6 @@
+<div class="news-edit">
+  <div class="news-edit__header">Add News</div>
+  <div class="news-edit__form">
+    <app-news-item-form *ngIf="newsItem" [newsItem]="newsItem" (submitNewsItem)="onNewsItemSubmit($event)"></app-news-item-form>
+  </div>
+</div>

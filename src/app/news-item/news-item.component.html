@@ -1,0 +1,8 @@
+<div class="item__info">
+  <h5 class="item__title">{{ newsItem.title }}</h5>
+  <p class="item__description">{{ newsItem.description }}</p>
+</div>
+<div class="item__actions" *ngIf="newsItem._id">
+  <button class="btn btn-secondary btn-sm item__action" (click)="onEditClick()">Edit</button>
+  <button class="btn btn-secondary btn-sm item__action" (click)="onDeleteClick()">Delete</button>
+</div>

@@ -1,0 +1,33 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+:host {
+  width: 100%;
+  display: flex;
+  padding: 15px;
+  border-radius: 3px;
+  background: white;
+}
+
+.item {
+  &__info {
+    flex-grow: 1;
+  }
+
+  &__title {
+
+  }
+
+  &__description {
+
+  }
+
+  &__actions {
+    display: flex;
+    flex-flow: column;
+  }
+
+  &__action {
+    margin: 5px;
+  }
+}

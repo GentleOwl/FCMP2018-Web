@@ -1,0 +1,16 @@
+<div class="auth">
+  <div class="auth__header">
+    Login
+  </div>
+  <form class="auth__form" (submit)="onLogin(email.value, password.value)">
+    <div class="form-group">
+      <label for="news-email">Email</label>
+      <input name="title" type="text" class="form-control" id="news-email" #email>
+    </div>
+    <div class="form-group">
+      <label for="news-password">Password</label>
+      <input name="password" type="text" class="form-control" id="news-password" #password>
+    </div>
+    <button class="btn btn-secondary">Login</button>
+  </form>
+</div>
